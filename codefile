@@ -1,0 +1,72 @@
+from ai import call_gpt  #This imports from ChatGPT
+
+def main():
+    african_countries = {
+        "Algeria": "Algiers",
+        "Angola": "Luanda",
+        "Benin": "Porto-Novo",
+        "Botswana": "Gaborone",
+        "Burkina Faso": "Ouagadougou",
+        "Burundi": "Gitega",
+        "Cape Verde": "Praia",
+        "Cameroon": "Yaoundé",
+        "Central African Republic": "Bangui",
+        "Chad": "N'Djamena",
+        "Comoros": "Moroni",
+        "Congo": "Brazzaville",
+        "Democratic Republic of the Congo": "Kinshasa",
+        "Ivory Coast": "Yamoussoukro",
+        "Djibouti": "Djibouti",
+        "Egypt": "Cairo",
+        "Equatorial Guinea": "Malabo",
+        "Eritrea": "Asmara",
+        "Swaziland": "Lobamba",
+        "Ethiopia": "Addis Ababa",
+        "Gabon": "Libreville",
+        "Gambia": "Banjul",
+        "Ghana": "Accra",
+        "Guinea": "Conakry",
+        "Guinea-Bissau": "Bissau",
+        "Kenya": "Nairobi",
+        "Lesotho": "Maseru",
+        "Liberia": "Monrovia",
+        "Libya": "Tripoli",
+        "Madagascar": "Antananarivo",
+        "Malawi": "Lilongwe",
+        "Mali": "Bamako",
+        "Mauritania": "Nouakchott",
+        "Mauritius": "Port Louis",
+        "Morocco": "Rabat",
+        "Mozambique": "Maputo",
+        "Namibia": "Windhoek",
+        "Niger": "Niamey",
+        "Nigeria": "Abuja",
+        "Rwanda": "Kigali",
+        "São Tomé and Príncipe": "São Tomé",
+        "Senegal": "Dakar",
+        "Seychelles": "Victoria",
+        "Sierra Leone": "Freetown",
+        "Somalia": "Mogadishu",
+        "South Africa": "Cape Town",
+        "South Sudan": "Juba",
+        "Sudan": "Khartoum",
+        "Tanzania": "Dodoma",
+        "Togo": "Lomé",
+        "Tunisia": "Tunis",
+        "Uganda": "Kampala",
+        "Zambia": "Lusaka",
+        "Zimbabwe": "Harare"
+    }
+
+    country = input("What African country do you have in mind? ")
+  
+    if country in african_countries:
+        capital = african_countries[country]
+        print(f"The capital of {country} is {capital}. Please hold on while we load some fun facts about {country}...")
+        about_country = call_gpt(f"Tell me fun facts about {country}, including tourist sites one can visit for vacation.")
+        print(about_country)
+    else:
+        print("Kindly input a valid African country.")
+
+if __name__ == '__main__':
+    main()
