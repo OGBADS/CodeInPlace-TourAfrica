@@ -1,72 +1,85 @@
-from ai import call_gpt  #This imports from ChatGPT
+from ai import call_gpt  # ChatGPT API for generating fun facts
+
+# Dictionary of African countries and their capitals
+country_capitals = {
+    "algeria": "Algiers",
+    "angola": "Luanda",
+    "benin": "Porto-Novo",
+    "botswana": "Gaborone",
+    "burkina faso": "Ouagadougou",
+    "burundi": "Gitega",
+    "cape verde": "Praia",
+    "cameroon": "Yaoundé",
+    "central african republic": "Bangui",
+    "chad": "N'Djamena",
+    "comoros": "Moroni",
+    "congo": "Brazzaville",
+    "democratic republic of the congo": "Kinshasa",
+    "ivory coast": "Yamoussoukro",
+    "djibouti": "Djibouti",
+    "egypt": "Cairo",
+    "equatorial guinea": "Malabo",
+    "eritrea": "Asmara",
+    "swaziland": "Lobamba",
+    "eswatini": "Lobamba",  # alternative name
+    "ethiopia": "Addis Ababa",
+    "gabon": "Libreville",
+    "gambia": "Banjul",
+    "ghana": "Accra",
+    "guinea": "Conakry",
+    "guinea-bissau": "Bissau",
+    "kenya": "Nairobi",
+    "lesotho": "Maseru",
+    "liberia": "Monrovia",
+    "libya": "Tripoli",
+    "madagascar": "Antananarivo",
+    "malawi": "Lilongwe",
+    "mali": "Bamako",
+    "mauritania": "Nouakchott",
+    "mauritius": "Port Louis",
+    "morocco": "Rabat",
+    "mozambique": "Maputo",
+    "namibia": "Windhoek",
+    "niger": "Niamey",
+    "nigeria": "Abuja",
+    "rwanda": "Kigali",
+    "são tomé and príncipe": "São Tomé",
+    "senegal": "Dakar",
+    "seychelles": "Victoria",
+    "sierra leone": "Freetown",
+    "somalia": "Mogadishu",
+    "south africa": "Cape Town",
+    "south sudan": "Juba",
+    "sudan": "Khartoum",
+    "tanzania": "Dodoma",
+    "togo": "Lomé",
+    "tunisia": "Tunis",
+    "uganda": "Kampala",
+    "zambia": "Lusaka",
+    "zimbabwe": "Harare"
+}
 
 def main():
-    african_countries = {
-        "Algeria": "Algiers",
-        "Angola": "Luanda",
-        "Benin": "Porto-Novo",
-        "Botswana": "Gaborone",
-        "Burkina Faso": "Ouagadougou",
-        "Burundi": "Gitega",
-        "Cape Verde": "Praia",
-        "Cameroon": "Yaoundé",
-        "Central African Republic": "Bangui",
-        "Chad": "N'Djamena",
-        "Comoros": "Moroni",
-        "Congo": "Brazzaville",
-        "Democratic Republic of the Congo": "Kinshasa",
-        "Ivory Coast": "Yamoussoukro",
-        "Djibouti": "Djibouti",
-        "Egypt": "Cairo",
-        "Equatorial Guinea": "Malabo",
-        "Eritrea": "Asmara",
-        "Swaziland": "Lobamba",
-        "Ethiopia": "Addis Ababa",
-        "Gabon": "Libreville",
-        "Gambia": "Banjul",
-        "Ghana": "Accra",
-        "Guinea": "Conakry",
-        "Guinea-Bissau": "Bissau",
-        "Kenya": "Nairobi",
-        "Lesotho": "Maseru",
-        "Liberia": "Monrovia",
-        "Libya": "Tripoli",
-        "Madagascar": "Antananarivo",
-        "Malawi": "Lilongwe",
-        "Mali": "Bamako",
-        "Mauritania": "Nouakchott",
-        "Mauritius": "Port Louis",
-        "Morocco": "Rabat",
-        "Mozambique": "Maputo",
-        "Namibia": "Windhoek",
-        "Niger": "Niamey",
-        "Nigeria": "Abuja",
-        "Rwanda": "Kigali",
-        "São Tomé and Príncipe": "São Tomé",
-        "Senegal": "Dakar",
-        "Seychelles": "Victoria",
-        "Sierra Leone": "Freetown",
-        "Somalia": "Mogadishu",
-        "South Africa": "Cape Town",
-        "South Sudan": "Juba",
-        "Sudan": "Khartoum",
-        "Tanzania": "Dodoma",
-        "Togo": "Lomé",
-        "Tunisia": "Tunis",
-        "Uganda": "Kampala",
-        "Zambia": "Lusaka",
-        "Zimbabwe": "Harare"
-    }
+    print("🌍 Welcome to the Tour Africa App!")
+    print("Discover the capital city and fun facts about any African country.")
+    print("Type 'exit' at any time to quit.\n")
 
-    country = input("What African country do you have in mind? ")
-  
-    if country in african_countries:
-        capital = african_countries[country]
-        print(f"The capital of {country} is {capital}. Please hold on while we load some fun facts about {country}...")
-        about_country = call_gpt(f"Tell me fun facts about {country}, including tourist sites one can visit for vacation.")
-        print(about_country)
-    else:
-        print("Kindly input a valid African country.")
+    while True:
+        country_input = input("Enter the name of an African country: ").strip().lower()
+
+        if country_input == 'exit':
+            print("👋 Thank you for using Tour Africa. Safe travels!")
+            break
+
+        if country_input in country_capitals:
+            capital = country_capitals[country_input]
+            print(f"\n✅ The capital of {country_input.title()} is {capital}.")
+            print(f"⏳ Loading fun facts about {country_input.title()}...\n")
+            about_country = call_gpt(f"Tell me fun facts about {country_input.title()} and advice on some tourist attractions.")
+            print(about_country)
+            print("\n" + "-"*50 + "\n")
+        else:
+            print("⚠️ That doesn't seem to be a valid African country. Please try again.\n")
 
 if __name__ == '__main__':
     main()
